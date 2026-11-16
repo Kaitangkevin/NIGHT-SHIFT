@@ -8,8 +8,6 @@
 
 <p align="center">
   <a href="https://kaitangkevin.github.io/NIGHT-SHIFT/"><strong>Play NIGHT SHIFT ↗</strong></a>
-  ·
-  <a href="#run-locally">Play locally</a>
 </p>
 
 ## About the game
@@ -43,41 +41,6 @@ Start with rows or columns marked **0**. Then look for cabinets with only one po
 ### Daily challenges and rankings
 
 A new published map becomes available at **00:00 Beijing time** (`Asia/Shanghai`). Everyone plays the same map on a given date. After solving it, enter a display name to submit your time. The first three places appear on the podium, with the remaining places listed below. Each date has its own leaderboard, and past scores stay in storage.
-
-## Run locally
-
-Requires Node.js 22 or later. No dependency installation is needed.
-
-```sh
-node server.mjs
-```
-
-Open [http://127.0.0.1:4173](http://127.0.0.1:4173). Without a Supabase configuration, scores are stored locally in `.night-shift-scores.json`.
-
-### Connect Supabase
-
-1. Run the [leaderboard migration](supabase/migrations/20261116000000_night_shift_leaderboard.sql) in your Supabase project's SQL Editor.
-2. Copy [`.env.example`](.env.example) to `.env.local` and set `SUPABASE_URL` and `SUPABASE_SECRET_KEY`. Keep the secret key in the server environment.
-3. Start the server with `node --env-file=.env.local server.mjs`.
-
-The server validates each completed board and records the time before accepting a score. Each attempt can produce only one score. Active attempts are held in memory and must be restarted if the server restarts.
-
-### Publish a map
-
-`config.mjs` defines the start date for DAY 001. The [map manifest](maps.json) includes daily challenges through December 14, 2026. To add dates, run:
-
-```sh
-node scripts/publish-map.mjs 2026-12-15
-node scripts/publish-map.mjs 2026-12-16 8 1
-```
-
-The optional arguments are the cabinet count and the double-cell fixture count. The script verifies that the map has exactly one solution before writing it and preserves existing dates. Before pushing new maps to GitHub Pages, sync their verified layouts to Supabase:
-
-```sh
-node --env-file=.env.local scripts/sync-pages-maps.mjs
-```
-
-GitHub Actions publishes the static game to [GitHub Pages](https://kaitangkevin.github.io/NIGHT-SHIFT/) whenever `main` is updated. The hosted version uses the [Pages migration](supabase/migrations/20261116010000_night_shift_pages.sql) to create attempts, validate solutions, and save scores in Supabase. The private key is used only for map synchronization and the optional local server.
 
 ## Copyright
 
