@@ -1,10 +1,22 @@
-# NIGHT SHIFT
+<p align="center">
+  <img src="assets/favicon.svg" alt="NIGHT SHIFT streetlight logo" width="84" height="84">
+</p>
 
-**One map a day. Light up your city.**
+<h1 align="center">NIGHT SHIFT</h1>
 
-Night has fallen, and parts of the city have gone dark. As tonight’s lighting technician, use the fixed electrical cabinets and the clues around the map to work out where every streetlight belongs.
+<p align="center"><strong>One map a day. Light up your city.</strong></p>
 
-NIGHT SHIFT is a daily logic puzzle with a responsive 3D night scene, an 8×8 board, and a leaderboard ranked by completion time.
+<p align="center">
+  <a href="https://github.com/Kaitangkevin/NIGHT-SHIFT"><strong>Visit the project on GitHub ↗</strong></a>
+  ·
+  <a href="#run-locally">Play locally</a>
+</p>
+
+## About the game
+
+Night has fallen, and parts of the city have gone dark. You’re tonight’s lighting technician. Use the fixed electrical cabinets and the numbers around an 8×8 grid to work out where every streetlight belongs.
+
+NIGHT SHIFT is a daily browser puzzle by **PaJii Studio**. A quiet 3D street scene leads into a timed logic challenge you can play on desktop or mobile. A new map opens at midnight Beijing time. Once you solve it, you can submit your time to the daily leaderboard.
 
 ## Game rules · V4.0
 
