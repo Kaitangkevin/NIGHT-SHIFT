@@ -1,0 +1,7 @@
+.night-shift-scores.json
+.night-shift-scores.json.tmp
+maps.json.tmp
+maps.json.lock
+.env
+.env.*
+!.env.example
