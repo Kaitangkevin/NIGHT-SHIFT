@@ -1,0 +1,33 @@
+name: Deploy NIGHT SHIFT
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - name: Prepare public game files
+        run: |
+          mkdir -p dist/assets
+          cp index.html style.css app.js config.mjs dialogs.mjs game.mjs maps.json pages-api.mjs puzzle.mjs scene.js dist/
+          cp assets/favicon.svg assets/scene-desktop.webp assets/scene-mobile.webp assets/three.module.min.js assets/three-LICENSE.txt dist/assets/
+          sed -i '/export const config = {/a\  hostedOnPages: true,' dist/config.mjs
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+      - name: Publish GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

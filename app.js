@@ -97,6 +97,10 @@ async function navigate(from, to, beforeShow, focus) {
 }
 
 async function api(path, data) {
+  if (config.hostedOnPages) {
+    const { pagesApi } = await import('./pages-api.mjs');
+    return pagesApi(path, data, maps[data?.date]);
+  }
   let response;
   try {
     response = await fetch('./api/' + path, data === undefined ? {} : {

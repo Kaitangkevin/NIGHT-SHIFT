@@ -7,7 +7,7 @@
 <p align="center"><strong>One map a day. Light up your city.</strong></p>
 
 <p align="center">
-  <a href="https://github.com/Kaitangkevin/NIGHT-SHIFT"><strong>Visit the project on GitHub ↗</strong></a>
+  <a href="https://kaitangkevin.github.io/NIGHT-SHIFT/"><strong>Play NIGHT SHIFT ↗</strong></a>
   ·
   <a href="#run-locally">Play locally</a>
 </p>
@@ -71,7 +71,13 @@ node scripts/publish-map.mjs 2026-12-15
 node scripts/publish-map.mjs 2026-12-16 8 1
 ```
 
-The optional arguments are the cabinet count and the double-cell fixture count. The script verifies that the map has exactly one solution before writing it and preserves existing dates.
+The optional arguments are the cabinet count and the double-cell fixture count. The script verifies that the map has exactly one solution before writing it and preserves existing dates. Before pushing new maps to GitHub Pages, sync their verified layouts to Supabase:
+
+```sh
+node --env-file=.env.local scripts/sync-pages-maps.mjs
+```
+
+GitHub Actions publishes the static game to [GitHub Pages](https://kaitangkevin.github.io/NIGHT-SHIFT/) whenever `main` is updated. The hosted version uses the [Pages migration](supabase/migrations/20261116010000_night_shift_pages.sql) to create attempts, validate solutions, and save scores in Supabase. The private key is used only for map synchronization and the optional local server.
 
 ## Copyright
 
